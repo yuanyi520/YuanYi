@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yuanyi.artemis.mapper.dao.StudentTest01">
+
+    <resultMap id="UserMapper" type="User">
+        <id column="user_id" property="id" jdbcType="INTEGER"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="UserMapper">
+        select * from user
+    </select>
+    
+    <select id="findUserById" resultMap="UserMapper" parameterType="INTEGER">
+        select * from user where user_id = #{id}
+    </select>
+</mapper>
