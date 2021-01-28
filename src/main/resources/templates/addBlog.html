@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>写博客</title>
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/mdeditor/editormd.min.js"></script>
+    <link rel="stylesheet" href="../static/mdeditor/css/editormd.min.css">
+</head>
+<body>
+    <div id="my-editormd" >
+        <textarea style="display:none;"></textarea>
+    </div>
+</body>
+
+<script>
+    var myEditor = editormd("my-editormd", {    //这里的就是上面的DIV的id属性值
+        width   : "90%",
+        height  : 640,
+        syncScrolling : "single",
+        path    : "../static/mdeditor/lib/",
+        saveHTMLToTextarea : true,  //这个配置，方便post提交表单
+        imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "/Center/RichTextUpload",
+            onload: function () {
+                //console.log('onload', this);
+                //this.fullscreen();
+                //this.unwatch();
+                //this.watch().fullscreen();
+ 
+                //this.setMarkdown("#PHP");
+                //this.width("100%");
+                //this.height(480);
+                //this.resize("100%", 640);
+            }
+
+    });
+</script>
+</html>
