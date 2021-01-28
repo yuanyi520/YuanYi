@@ -11,7 +11,7 @@
 }
 
 .header_content {
-    width: 1000px;
+    width: 60%;
     height: 100%;
     margin: 0 auto;
     display: flex;
@@ -45,14 +45,14 @@
 }
 
 .body {
-    width: 1000px;
+    width: 60%;
     height: 100%;
-    /*background-color: bisque;*/
     margin: 0 auto;
 }
 
 .content {
-    width: 80%;
+    width: 70%;
+    height: 100%;
 }
 
 .body_content {
@@ -105,4 +105,42 @@
 .textdata span {
     font-size: 12px;
     font-weight: 400;
+}
+
+/* 侧边栏 */
+.side {
+   width: 26%;
+   height: 100%;
+   float: right;
+}
+
+.side span{
+    display: block;
+    margin-top: 20px;
+    font-size: 18px;
+ }
+
+.side hr{
+    margin-top: 4px;
+    background-color: #dedede;
+    height: 1px;
+    border: none;
+ }
+
+.side p {
+    margin-top: 10px;
+    font-size: 14px;
+    letter-spacing:1px; 
+    color: #514951;
+}
+
+.side a {
+    text-decoration: none;
+    color: #6891ff;
+    display: block;
+    margin-top: 20px;
+}
+
+.side a span{
+    display: inline;
 }
