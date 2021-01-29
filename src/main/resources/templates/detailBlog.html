@@ -60,7 +60,7 @@
 <script>
     axios.get("/blog/findbloglistbyuserid/1").then(resp => {
         $("#text").val(resp.data.data.content);
-    initHtml('txtblogcontent');
+        initHtml('txtblogcontent');
     }).catch(err => {
         console.log(err);
     });
