@@ -1,12 +1,16 @@
 package com.yuanyi.artemis.bean;
 
+/**
+ * @name: 用户实体类
+ * @author: yuanyi
+ * @time：2021/01/29 09:59
+ * @version：ver 1.0
+ */
 public class User {
 
     private Integer id;
 
     private String username;
-
-    private String password;
 
     public User() {
     }
@@ -25,22 +29,5 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 }

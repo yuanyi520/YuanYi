@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../static/mdeditor/css/editormd.min.css">
     <link rel="stylesheet" href="../static/css/index.css">
     <link rel="stylesheet" href="../static/css/detail.css">
+    <script src="../static/js/common/axios.js"></script>
     <style>
         *{
             margin: 0;
@@ -43,7 +44,7 @@
                 </div>
             </div>
         </div>
-    <input type="file" id="fileinput" onchange="test(this)">
+    <!--<input type="file" id="fileinput" onchange="test(this)">-->
 
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/mdeditor/editormd.min.js"></script>
@@ -57,18 +58,15 @@
 </body>
 
 <script>
-    function test(file){
-     var fileInput = file.files[0];
-     var reader = new FileReader();
-     reader.readAsText(fileInput)
-     reader.onload = function (){
-         $("#text").val(this.result)
-         initHtml(txtblogcontent);
-     }
-    }
+    axios.get("/blog/findbloglistbyuserid/1").then(resp => {
+        $("#text").val(resp.data.data.content);
+    initHtml('txtblogcontent');
+    }).catch(err => {
+        console.log(err);
+    });
 
    function initHtml(elemId){
-        editormd.markdownToHTML("txtblogcontent", {
+        editormd.markdownToHTML(elemId, {
             htmlDecode: "style,script,iframe",  // you can filter tags decode
             emoji: true,
             taskList: true,
@@ -77,6 +75,14 @@
             sequenceDiagram: true,  // 默认不解析
             codeFold: true,
         });
+    }
+
+    function test(file){
+        var fileInput = file.files[0];
+        var reader = new FileReader();
+        reader.readAsText(fileInput)
+        reader.onload = function (){
+        }
     }
 </script>
 </html>

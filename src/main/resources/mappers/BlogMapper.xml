@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yuanyi.artemis.mapper.BlogMapper">
+
+    <resultMap id="BlogMapper" type="com.yuanyi.artemis.bean.Blog">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="time" property="time"/>
+        <result column="content" property="content"/>
+
+        <association property="user" javaType="com.yuanyi.artemis.bean.User">
+            <id column="id" property="id" />
+            <result column="username" property="username"/>
+        </association>
+    </resultMap>
+
+    <select id="findBlogById" resultMap="BlogMapper" parameterType="INTEGER">
+        SELECT * FROM blog, user WHERE user.`id` = blog.`user_id` AND blog.`user_id` = #{id}
+    </select>
+</mapper>
