@@ -10,6 +10,7 @@
     <script src="../static/js/jquery.min.js"></script>
     <script src="../static/mdeditor/editormd.min.js"></script>
     <script src="../static/js/common/util.js"></script>
+    <script src="../static/js/common/axios.js"></script>
 </head>
 <body>
     <header class="header">
@@ -34,7 +35,7 @@
             <div>
                 <span class="">
                     标题
-                    <input class="" type="text" id="input-1">
+                    <input class="" type="text" id="title">
                 </span>
             </div>
         </div>
@@ -76,8 +77,28 @@
     $("#time").val(getTime(1));
     //获取编辑器内容
     // var blogcontent = encodeURIComponent(testEditor.getMarkdown());
+    //提交新增的博客
     function submit(){
-        console.log(myEditor.getMarkdown());
+        let title = $("#title").val();
+        let time = $("#time").val();
+        if(title == ""){
+            alert("请输入博客标题")
+            return false;
+        }
+        let titleArray = myEditor.markdownToC;
+        let content = myEditor.getMarkdown();
+        axios.post("blog/saveblog",{
+            title:title,
+            time:time,
+            titleArray:titleArray,
+            content:content
+        }).then(resp => {
+            if(resp.data.code == 0){
+                window.location.href = "/";
+            }
+        }).catch(err => {
+            console.log(err);
+        });
     }
 </script>
 </html>

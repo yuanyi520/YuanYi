@@ -15,7 +15,21 @@
         </association>
     </resultMap>
 
+    <!--通过id查询博客-->
     <select id="findBlogById" resultMap="BlogMapper" parameterType="INTEGER">
-        SELECT * FROM blog, user WHERE user.`id` = blog.`user_id` AND blog.`user_id` = #{id}
+        SELECT * FROM blog, user WHERE user.`id` = blog.`user_id` AND blog.`id` = #{id}
     </select>
+
+    <select id="">
+        select * from blog, user where user.`id` = blog.
+    </select>
+
+    <!-- 保存博客 -->
+    <insert id="saveBlog" parameterType="com.yuanyi.artemis.bean.Blog">
+        <!--配置插入操作后,获取插入数据的id-->
+        <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
+            select last_insert_id();
+        </selectKey>
+        insert into blog(title, time, content, user_id) value(#{title}, #{time}, #{content}, #{user.id})
+    </insert>
 </mapper>

@@ -2,6 +2,7 @@ package com.yuanyi.artemis.mapper;
 
 import com.yuanyi.artemis.bean.Blog;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,10 +18,21 @@ public interface BlogMapper {
     Blog findBlogById(Integer id) throws Exception;
 
     /**
-     * 通过用户id查找所有博客
-     * @param id
+     * 通过用户id查找所有博客并分页
+     * @param userId
+     * @param limit
+     * @param page
      * @return
      * @throws Exception
      */
-    List<Blog> findBlogListByUserId(Integer id) throws Exception;
+    List<Blog> findBlogListByUserId(@Param("userId") Integer userId,
+                                    @Param("page")Integer page,
+                                    @Param("limit")Integer limit) throws Exception;
+
+    /**
+     * 保存博客
+     * @param blog
+     * @throws Exception
+     */
+    void saveBlog(Blog blog) throws Exception;
 }
