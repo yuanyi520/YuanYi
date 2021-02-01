@@ -35,4 +35,12 @@ public interface BlogMapper {
      * @throws Exception
      */
     void saveBlog(Blog blog) throws Exception;
+
+    /**
+     * 查询该用户下博客的数量
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    int blogCount(Integer userId) throws Exception;
 }

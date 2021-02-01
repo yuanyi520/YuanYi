@@ -9,6 +9,11 @@
     <script src="../static/js/common/util.js"></script>
     <link rel="stylesheet" href="../static/css/index.css">
     <link rel="stylesheet" href="../static/css/element/index.css">
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -32,158 +37,61 @@
             <span>My Link<hr></span>
             <a href="https://github.com/yuanyi520" target="_blank">GitHub</a>
         </div>
-        <div class="content">
-            <div class="body_content">
-                <span><a href="/detailBlog">标题</a></span>
+        <div class="content" id="app" v-cloak>
+            <div class="body_content" v-for = "(blog,index) in blogList" :key="index">
+                <span><a href="/detailBlog">{{blog.title}}</a></span>
                 <div>
                     <p>
-                        cccccccccsssdfsfsdfdsfdsf
+                        {{blog.introduction}}
                         <i class="el-icon-s-promotion">Read More</i>
                     </p>
                     <div class="textdata">
                         <span>作者:</span>
-                        <span>测试</span>&nbsp;
+                        <span>{{blog.user.username}}</span>&nbsp;
                         <span>写于:</span>
-                        <span>2020-05-26</span>
-                    </div>
-                </div>
-            </div>
-            <div class="body_content">
-                <span><a href="/detailBlog">标题</a></span>
-                <div>
-                    <p>
-                        cccccccccsssdfsfsdfdsfdsf
-                        <i class="el-icon-s-promotion">Read More</i>
-                    </p>
-                    <div class="textdata">
-                        <span>作者:</span>
-                        <span>测试</span>&nbsp;
-                        <span>写于:</span>
-                        <span>2020-05-26</span>
-                    </div>
-                </div>
-            </div>
-            <div class="body_content">
-                <span><a href="">标题</a></span>
-                <div>
-                    <p>
-                        cccccccccsssdfsfsdfdsfdsf
-                        <i class="el-icon-s-promotion">Read More</i>
-                    </p>
-                    <div class="textdata">
-                        <span>作者:</span>
-                        <span>测试</span>&nbsp;
-                        <span>写于:</span>
-                        <span>2020-05-26</span>
-                    </div>
-                </div>
-            </div>
-            <div class="body_content">
-                <span><a href="">标题</a></span>
-                <div>
-                    <p>
-                        cccccccccsssdfsfsdfdsfdsf
-                        <i class="el-icon-s-promotion">Read More</i>
-                    </p>
-                    <div class="textdata">
-                        <span>作者:</span>
-                        <span>测试</span>&nbsp;
-                        <span>写于:</span>
-                        <span>2020-05-26</span>
-                    </div>
-                </div>
-            </div>
-            <div class="body_content">
-                <span><a href="">标题</a></span>
-                <div>
-                    <p>
-                        cccccccccsssdfsfsdfdsfdsf
-                        <i class="el-icon-s-promotion">Read More</i>
-                    </p>
-                    <div class="textdata">
-                        <span>作者:</span>
-                        <span>测试</span>&nbsp;
-                        <span>写于:</span>
-                        <span>2020-05-26</span>
-                    </div>
-                </div>
-            </div>
-            <div class="body_content">
-                <span><a href="">标题</a></span>
-                <div>
-                    <p>
-                        cccccccccsssdfsfsdfdsfdsf
-                        <i class="el-icon-s-promotion">Read More</i>
-                    </p>
-                    <div class="textdata">
-                        <span>作者:</span>
-                        <span>测试</span>&nbsp;
-                        <span>写于:</span>
-                        <span>2020-05-26</span>
-                    </div>
-                </div>
-            </div>
-            <div class="body_content">
-                <span><a href="">标题</a></span>
-                <div>
-                    <p>
-                        cccccccccsssdfsfsdfdsfdsf
-                        <i class="el-icon-s-promotion">Read More</i>
-                    </p>
-                    <div class="textdata">
-                        <span>作者:</span>
-                        <span>测试</span>&nbsp;
-                        <span>写于:</span>
-                        <span>2020-05-26</span>
-                    </div>
-                </div>
-            </div>
-            <div class="body_content">
-                <span><a href="">标题</a></span>
-                <div>
-                    <p>
-                        cccccccccsssdfsfsdfdsfdsf
-                        <i class="el-icon-s-promotion">Read More</i>
-                    </p>
-                    <div class="textdata">
-                        <span>作者:</span>
-                        <span>测试</span>&nbsp;
-                        <span>写于:</span>
-                        <span>2020-05-26</span>
-                    </div>
-                </div>
-            </div>
-            <div class="body_content">
-                <span><a href="">标题</a></span>
-                <div>
-                    <p>
-                        cccccccccsssdfsfsdfdsfdsf
-                        <i class="el-icon-s-promotion">Read More</i>
-                    </p>
-                    <div class="textdata">
-                        <span>作者:</span>
-                        <span>测试</span>&nbsp;
-                        <span>写于:</span>
-                        <span>2020-05-26</span>
-                    </div>
-                </div>
-            </div>
-            <div class="body_content">
-                <span><a href="">标题</a></span>
-                <div>
-                    <p>
-                        cccccccccsssdfsfsdfdsfdsf
-                        <i class="el-icon-s-promotion">Read More</i>
-                    </p>
-                    <div class="textdata">
-                        <span>作者:</span>
-                        <span>测试</span>&nbsp;
-                        <span>写于:</span>
-                        <span>2020-05-26</span>
+                        <span>{{blog.time}}</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
+<script>
+    var vue = new Vue({
+        el:"#app",
+        data:{
+            blogList:new Array()
+        },
+        methods:{
+            init:function(page, size){
+                axios.post("/blog/bloglist",{
+                    userId:1,
+                    page:page,
+                    size:size
+                }).then( resp => {
+                    this.blogList = resp.data.data;
+                    for (let a = 0; a < this.blogList.length; a++){
+                        let time = timetrans(this.blogList[a].time);
+                        this.blogList[a].time = time;
+                    }
+                }).catch( err => {
+                    console.log(err);
+                });
+            }
+        },
+        mounted() {
+            this.init(1,10);
+        }
+    });
+
+    //时间转换
+    function timetrans(date) {
+        var date = new Date(date);
+        var Y = date.getFullYear();
+        var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+        var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
+        return Y + "-" + M + "-" + D;
+    }
+</script>
 </html>

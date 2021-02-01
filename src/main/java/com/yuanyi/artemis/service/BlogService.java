@@ -11,4 +11,6 @@ public interface BlogService {
     void saveBlog(Blog blog) throws Exception;
 
     List<Blog> findBlogListByUserId(Integer userId, Integer page, Integer limit) throws Exception;
+
+    int blogCount(Integer userId) throws Exception;
 }

@@ -29,7 +29,7 @@ public class ResponseUtil {
      * @param count
      * @param object
      */
-    public String success(String message, long count, Object object) {
+    public String success(String message, int count, Object object) {
         JSONObject returnJsonObj = new JSONObject();
         returnJsonObj.put("code", "0");
         returnJsonObj.put("message", message);

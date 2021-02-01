@@ -6,9 +6,15 @@ import com.yuanyi.artemis.bean.Blog;
 import com.yuanyi.artemis.bean.User;
 import com.yuanyi.artemis.service.BlogService;
 import com.yuanyi.artemis.service.UserService;
+import com.yuanyi.artemis.util.LogUtil;
 import com.yuanyi.artemis.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 /**
  * @name: 博客控制器
@@ -25,6 +31,12 @@ public class BlogController {
      */
     @Autowired
     private ResponseUtil responseUtil;
+
+    /**
+     * 日志工具类
+     */
+    @Autowired
+    private LogUtil logUtil;
 
     /**
      * 用户service
@@ -62,9 +74,10 @@ public class BlogController {
     public String saveBlog(@RequestBody String json) {
         try {
             JSONObject reqJson = JSON.parseObject(json);
-            reqJson.getJSONArray("titleArray");
             Blog blog = new Blog();
             blog.setContent(reqJson.getString("content"));
+            blog.setTitlearray(reqJson.getJSONArray("titleArray").toJSONString());
+            blog.setIntroduction(reqJson.getString("introduction"));
             blog.setTime(reqJson.getDate("time"));
             blog.setTitle(reqJson.getString("title"));
             blog.setUser(userService.findUserById(1));
@@ -74,5 +87,35 @@ public class BlogController {
             e.printStackTrace();
             return responseUtil.error(e.getMessage(), e);
         }
+    }
+
+    /**
+     * 分页查询
+     * @param json
+     * @return
+     */
+    @PostMapping(value = "/bloglist", produces = "application/json;charset=UTF-8")
+    public String findBlogListByUserId(@RequestBody String json) {
+        try {
+            JSONObject reqJson = JSON.parseObject(json);
+            Integer userId = reqJson.getInteger("userId");
+            Integer page = reqJson.getInteger("page");
+            Integer size = reqJson.getInteger("size");
+            int count = blogService.blogCount(userId);
+            List<Blog> blogList = blogService.findBlogListByUserId(userId, page - 1, size);
+            return responseUtil.success("查询成功", count, blogList);
+        }catch (Exception e){
+            e.printStackTrace();
+            return responseUtil.error(e.getMessage(), e);
+        }
+    }
+
+    @GetMapping(value = "/test")
+    public String test(HttpServletRequest request, HttpServletResponse response) {
+        String ip = logUtil.getIpAddress(request);
+        String browser = logUtil.getBrowserName(request);
+        String time = logUtil.getTime();
+        String os = logUtil.getOsName(request);
+        return null;
     }
 }

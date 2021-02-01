@@ -46,6 +46,18 @@ public class BlogServiceImpl implements BlogService {
      */
     @Override
     public List<Blog> findBlogListByUserId(Integer userId, Integer page, Integer limit) throws Exception {
-        return null;
+        return blogMapper.findBlogListByUserId(userId, page, limit);
     }
+
+    /**
+     * 用户博客总数
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public int blogCount(Integer userId) throws Exception {
+        return blogMapper.blogCount(userId);
+    }
+
 }

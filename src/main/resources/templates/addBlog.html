@@ -38,6 +38,12 @@
                     <input class="" type="text" id="title">
                 </span>
             </div>
+            <div>
+                <span class="">
+                    简介
+                    <input class="" type="text" id="introduction">
+                </span>
+            </div>
         </div>
         <div id="my-editormd" >
             <textarea style="display:none;"></textarea>
@@ -81,6 +87,7 @@
     function submit(){
         let title = $("#title").val();
         let time = $("#time").val();
+        let introduction = $("#introduction").val();
         if(title == ""){
             alert("请输入博客标题")
             return false;
@@ -89,6 +96,7 @@
         let content = myEditor.getMarkdown();
         axios.post("blog/saveblog",{
             title:title,
+            introduction:introduction,
             time:time,
             titleArray:titleArray,
             content:content

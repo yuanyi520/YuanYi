@@ -6,6 +6,8 @@
     <resultMap id="BlogMapper" type="com.yuanyi.artemis.bean.Blog">
         <id column="id" property="id"/>
         <result column="title" property="title"/>
+        <result column="title_array" property="titlearray"/>
+        <result column="introduction" property="introduction"/>
         <result column="time" property="time"/>
         <result column="content" property="content"/>
 
@@ -20,8 +22,14 @@
         SELECT * FROM blog, user WHERE user.`id` = blog.`user_id` AND blog.`id` = #{id}
     </select>
 
-    <select id="">
-        select * from blog, user where user.`id` = blog.
+    <!--分页查询-->
+    <select id="findBlogListByUserId" resultMap="BlogMapper">
+        SELECT * FROM blog,user WHERE blog.`user_id` = user.id AND blog.`user_id` = #{userId} ORDER BY blog.`time` DESC LIMIT #{page},#{limit}
+    </select>
+
+    <!--查询总数-->
+    <select id="blogCount" resultType="java.lang.Integer" parameterType="INTEGER">
+        SELECT COUNT(*) FROM blog where blog.`user_id` = #{userId}
     </select>
 
     <!-- 保存博客 -->
@@ -30,6 +38,6 @@
         <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
             select last_insert_id();
         </selectKey>
-        insert into blog(title, time, content, user_id) value(#{title}, #{time}, #{content}, #{user.id})
+        insert into blog(title,title_array, introduction, time, content, user_id) value(#{title},#{titlearray}, #{introduction}, #{time}, #{content}, #{user.id})
     </insert>
 </mapper>

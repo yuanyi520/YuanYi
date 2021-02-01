@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yuanyi.artemis.mapper.AccessLogMapper">
+
+    <resultMap id="AccessLogMapper" type="com.yuanyi.artemis.bean.AccessLog">
+        <id column="id" property="id"/>
+        <result column="ip" property="ip"/>
+        <result column="time" property="time"/>
+        <result column="browsename" property="browsename"/>
+        <result column="os" property="os"/>
+    </resultMap>
+
+    <!--保存日志-->
+    <insert id="saveAccessLog" parameterType="com.yuanyi.artemis.bean.AccessLog">
+        <!--配置插入操作后,获取插入数据的id-->
+        <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
+            select last_insert_id();
+        </selectKey>
+        insert into accesslog(ip, time, browsername, os) value(#{ip}, #{time}, #{browsername}, #{os})
+    </insert>
+</mapper>

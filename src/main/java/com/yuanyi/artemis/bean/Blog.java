@@ -14,6 +14,10 @@ public class Blog {
 
     private String title;
 
+    private String titlearray;
+
+    private String introduction;
+
     private Date time;
 
     private String content;
@@ -37,6 +41,22 @@ public class Blog {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getTitlearray() {
+        return titlearray;
+    }
+
+    public void setTitlearray(String titlearray) {
+        this.titlearray = titlearray;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
     }
 
     public Date getTime() {

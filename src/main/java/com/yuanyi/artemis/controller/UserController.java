@@ -18,18 +18,4 @@ public class UserController {
     private ResponseUtil responseUtil;
 
 
-    @Autowired
-    private BlogMapper blogMapper;
-
-
-//    @GetMapping(value = "/userList2", produces = "application/json;charset=UTF-8")
-//    public String userList2(){
-//        try {
-//            return responseUtil.success("请求成功",blogMapper.findBlogById(1));
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return responseUtil.error(e.getMessage(),null);
-//        }
-//    }
-
 }
