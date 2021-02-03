@@ -7,8 +7,10 @@
     <script src="../static/js/common/axios.js"></script>
     <script src="../static/js/common/vue.js"></script>
     <script src="../static/js/common/util.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../static/css/index.css">
     <link rel="stylesheet" href="../static/css/element/index.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
     <style>
         [v-cloak]{
             display: none;
@@ -53,6 +55,13 @@
                     </div>
                 </div>
             </div>
+            <div class="pagefoot">
+                <button class="pagination">c</button>
+                <ul class="pagination">
+                    <li v-for="page in pageSize"><a href="#">{{page}}</a></li>
+                </ul>
+                <button class="pagination">c</button>
+            </div>
         </div>
     </div>
 </body>
@@ -61,7 +70,9 @@
     var vue = new Vue({
         el:"#app",
         data:{
-            blogList:new Array()
+            blogList:new Array(),
+            content:"",
+            pageSize:""
         },
         methods:{
             init:function(page, size){
@@ -74,10 +85,19 @@
                     for (let a = 0; a < this.blogList.length; a++){
                         let time = timetrans(this.blogList[a].time);
                         this.blogList[a].time = time;
+                        this.content = resp.data.count;
+                        if (this.content % 10 == 0){
+                            this.pageSize = parseInt(this.content / 10);
+                        }else {
+                            this.pageSize = parseInt(this.content / 10) + 1;
+                        }
                     }
                 }).catch( err => {
                     console.log(err);
                 });
+            },
+            nextpage:function(page){
+                
             }
         },
         mounted() {

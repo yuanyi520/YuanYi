@@ -105,6 +105,7 @@
 .textdata span {
     font-size: 12px;
     font-weight: 400;
+    color: #666666;
 }
 
 /* 侧边栏 */
@@ -143,4 +144,9 @@
 
 .side a span{
     display: inline;
+}
+
+.pagefoot {
+    width: 40%;
+    margin: 0 auto;
 }

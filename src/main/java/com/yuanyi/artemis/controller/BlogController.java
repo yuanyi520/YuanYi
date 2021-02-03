@@ -110,12 +110,4 @@ public class BlogController {
         }
     }
 
-    @GetMapping(value = "/test")
-    public String test(HttpServletRequest request, HttpServletResponse response) {
-        String ip = logUtil.getIpAddress(request);
-        String browser = logUtil.getBrowserName(request);
-        String time = logUtil.getTime();
-        String os = logUtil.getOsName(request);
-        return null;
-    }
 }
