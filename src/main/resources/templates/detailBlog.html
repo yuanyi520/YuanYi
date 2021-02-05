@@ -3,24 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Artemis</title>
     <link rel="stylesheet" href="../static/mdeditor/css/editormd.min.css">
     <link rel="stylesheet" href="../static/css/index.css">
     <link rel="stylesheet" href="../static/css/detail.css">
     <script src="../static/js/common/axios.js"></script>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-    </style>
 </head>
 <body>
     <header class="header">
         <div class="header_content">
             <a href="/" class="header_content_a">Artemis</a>
             <ul>
-                <li><a href="">首页</a></li>
+                <li><a href="/">首页</a></li>
                 <li><a href="/addBlog" target="_blank">新增</a></li>
                 <li><a href="">归档</a></li>
                 <li><a href="">关于</a></li>
@@ -45,7 +39,6 @@
             </div>
         </div>
     </div>
-    <!--<input type="file" id="fileinput" onchange="test(this)">-->
 
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/mdeditor/editormd.min.js"></script>
@@ -60,7 +53,8 @@
 </body>
 
 <script>
-    axios.get("/blog/findbloglistbyuserid/1").then(resp => {
+    var blogid = getQueryVariable("blogid");
+    axios.get("/blog/findbloglistbyuserid/"+blogid).then(resp => {
         $("#text").val(resp.data.data.content);
         initHtml('txtblogcontent');
     }).catch(err => {
@@ -85,6 +79,16 @@
         reader.readAsText(fileInput)
         reader.onload = function (){
         }
+    }
+
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
     }
 </script>
 </html>

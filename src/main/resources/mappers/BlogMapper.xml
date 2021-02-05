@@ -24,7 +24,7 @@
 
     <!--分页查询-->
     <select id="findBlogListByUserId" resultMap="BlogMapper">
-        SELECT * FROM blog,user WHERE blog.`user_id` = user.id AND blog.`user_id` = #{userId} ORDER BY blog.`time` DESC LIMIT #{page},#{limit}
+        SELECT * FROM blog,user WHERE blog.`user_id` = user.id AND blog.`user_id` = #{userId} ORDER BY blog.`time` DESC LIMIT #{page} ,#{limit}
     </select>
 
     <!--查询总数-->

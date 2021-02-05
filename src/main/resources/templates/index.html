@@ -41,7 +41,7 @@
         </div>
         <div class="content" id="app" v-cloak>
             <div class="body_content" v-for = "(blog,index) in blogList" :key="index">
-                <span><a href="/detailBlog">{{blog.title}}</a></span>
+                <span><a :href="'/detailBlog?blogid='+blog.id">{{blog.title}}</a></span>
                 <div>
                     <p>
                         {{blog.introduction}}
@@ -51,16 +51,16 @@
                         <span>作者:</span>
                         <span>{{blog.user.username}}</span>&nbsp;
                         <span>写于:</span>
-                        <span>{{blog.time}}</span>
+                        <span>{{timetrans(blog.time)}}</span>
                     </div>
                 </div>
             </div>
             <div class="pagefoot">
-                <button class="pagination">c</button>
                 <ul class="pagination">
-                    <li v-for="page in pageSize"><a href="#">{{page}}</a></li>
+                    <li v-on:click="nextpage(1)"><span>&laquo;</span></li>
+                    <li v-for="page in pageSize" v-on:click="nextpage(page,this)" ><span>{{page}}</span></li>
+                    <li v-on:click="nextpage(pageSize)"><span>&raquo;</span></li>
                 </ul>
-                <button class="pagination">c</button>
             </div>
         </div>
     </div>
@@ -82,22 +82,34 @@
                     size:size
                 }).then( resp => {
                     this.blogList = resp.data.data;
-                    for (let a = 0; a < this.blogList.length; a++){
-                        let time = timetrans(this.blogList[a].time);
-                        this.blogList[a].time = time;
-                        this.content = resp.data.count;
-                        if (this.content % 10 == 0){
-                            this.pageSize = parseInt(this.content / 10);
-                        }else {
-                            this.pageSize = parseInt(this.content / 10) + 1;
-                        }
+                    this.content = resp.data.count;
+                    if (this.content % 10 == 0){
+                        this.pageSize = parseInt(this.content / 10);
+                    }else {
+                        this.pageSize = parseInt(this.content / 10) + 1;
                     }
                 }).catch( err => {
                     console.log(err);
                 });
             },
-            nextpage:function(page){
-                
+            nextpage:function(page,object){
+                axios.post("/blog/bloglist",{
+                    userId:1,
+                    page:page,
+                    size:10
+                }).then(resp => {
+                    this.blogList = resp.data.data;
+                    console.log(object);
+                }).catch(err => {
+                   console.log(err);
+                });
+            },
+            timetrans:function(date) {
+                var date = new Date(date);
+                var Y = date.getFullYear();
+                var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+                var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
+                return Y + "-" + M + "-" + D;
             }
         },
         mounted() {
@@ -105,13 +117,5 @@
         }
     });
 
-    //时间转换
-    function timetrans(date) {
-        var date = new Date(date);
-        var Y = date.getFullYear();
-        var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
-        var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
-        return Y + "-" + M + "-" + D;
-    }
 </script>
 </html>

@@ -150,3 +150,11 @@
     width: 40%;
     margin: 0 auto;
 }
+
+.pagefoot li {
+    cursor: pointer;
+}
+
+.active {
+    background-color: #eeeeee;
+}

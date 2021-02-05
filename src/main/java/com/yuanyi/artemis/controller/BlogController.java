@@ -102,7 +102,7 @@ public class BlogController {
             Integer page = reqJson.getInteger("page");
             Integer size = reqJson.getInteger("size");
             int count = blogService.blogCount(userId);
-            List<Blog> blogList = blogService.findBlogListByUserId(userId, page - 1, size);
+            List<Blog> blogList = blogService.findBlogListByUserId(userId, (page - 1) * size, size);
             return responseUtil.success("查询成功", count, blogList);
         }catch (Exception e){
             e.printStackTrace();
