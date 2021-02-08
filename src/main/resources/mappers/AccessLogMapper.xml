@@ -7,7 +7,7 @@
         <id column="id" property="id"/>
         <result column="ip" property="ip"/>
         <result column="time" property="time"/>
-        <result column="browsename" property="browsename"/>
+        <result column="browsername" property="browsename"/>
         <result column="os" property="os"/>
     </resultMap>
 
@@ -17,6 +17,6 @@
         <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
             select last_insert_id();
         </selectKey>
-        insert into accesslog(ip, time, browsername, os) value(#{ip}, #{time}, #{browsername}, #{os})
+        insert into access_log(ip, time, browsername, os) value(#{ip}, #{time}, #{browsename}, #{os})
     </insert>
 </mapper>

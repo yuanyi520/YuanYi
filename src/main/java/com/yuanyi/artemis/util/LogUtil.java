@@ -32,8 +32,8 @@ public class LogUtil {
 
         String browser = "";
 
-        if (user.contains("edge")) {
-            browser=(userAgent.substring(userAgent.indexOf("Edge")).split(" ")[0]).replace("/", "-");
+        if (user.contains("edg")) {
+            browser=(userAgent.substring(userAgent.indexOf("Edg")).split(" ")[0]).replace("/", "-");
         } else if (user.contains("msie")) {
             String substring=userAgent.substring(userAgent.indexOf("MSIE")).split(";")[0];
             browser=substring.split(" ")[0].replace("MSIE", "IE")+"-"+substring.split(" ")[1];
@@ -101,10 +101,9 @@ public class LogUtil {
      * @param request
      * @return
      */
-    public String getTime() {
+    public Date getTime() {
         long timeMillis = System.currentTimeMillis();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date(timeMillis);
-        return dateFormat.format(date);
+        return date;
     }
 }

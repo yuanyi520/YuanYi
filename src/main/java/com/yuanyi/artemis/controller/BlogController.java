@@ -2,6 +2,7 @@ package com.yuanyi.artemis.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.yuanyi.artemis.annotation.EnableLog;
 import com.yuanyi.artemis.bean.Blog;
 import com.yuanyi.artemis.bean.User;
 import com.yuanyi.artemis.service.BlogService;
@@ -94,6 +95,7 @@ public class BlogController {
      * @param json
      * @return
      */
+    @EnableLog(detail = "分页查询")
     @PostMapping(value = "/bloglist", produces = "application/json;charset=UTF-8")
     public String findBlogListByUserId(@RequestBody String json) {
         try {

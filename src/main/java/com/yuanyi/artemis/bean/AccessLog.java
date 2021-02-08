@@ -62,4 +62,15 @@ public class AccessLog {
     public void setOs(String os) {
         this.os = os;
     }
+
+    @Override
+    public String toString() {
+        return "AccessLog{" +
+                "id=" + id +
+                ", ip='" + ip + '\'' +
+                ", time=" + time +
+                ", browsename='" + browsename + '\'' +
+                ", os='" + os + '\'' +
+                '}';
+    }
 }
