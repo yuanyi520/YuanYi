@@ -14,6 +14,12 @@ public class AccessLog {
 
     private String ip;
 
+    private String url;
+
+    private String operatingtype;
+
+    private String message;
+
     private Date time;
 
     private String browsename;
@@ -21,6 +27,7 @@ public class AccessLog {
     private String os;
 
     public AccessLog() {
+
     }
 
     public Integer getId() {
@@ -37,6 +44,30 @@ public class AccessLog {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getOperatingtype() {
+        return operatingtype;
+    }
+
+    public void setOperatingtype(String operatingtype) {
+        this.operatingtype = operatingtype;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public Date getTime() {
@@ -61,16 +92,5 @@ public class AccessLog {
 
     public void setOs(String os) {
         this.os = os;
-    }
-
-    @Override
-    public String toString() {
-        return "AccessLog{" +
-                "id=" + id +
-                ", ip='" + ip + '\'' +
-                ", time=" + time +
-                ", browsename='" + browsename + '\'' +
-                ", os='" + os + '\'' +
-                '}';
     }
 }

@@ -6,6 +6,9 @@
     <resultMap id="AccessLogMapper" type="com.yuanyi.artemis.bean.AccessLog">
         <id column="id" property="id"/>
         <result column="ip" property="ip"/>
+        <result column="url" property="url"/>
+        <result column="operating_type" property="operatingtype"/>
+        <result column="message" property="message"/>
         <result column="time" property="time"/>
         <result column="browsername" property="browsename"/>
         <result column="os" property="os"/>
@@ -17,6 +20,6 @@
         <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
             select last_insert_id();
         </selectKey>
-        insert into access_log(ip, time, browsername, os) value(#{ip}, #{time}, #{browsename}, #{os})
+        insert into access_log(ip,url,operating_type,message,time,browsername,os) value(#{ip},#{url},#{operatingtype},#{message},#{time},#{browsename},#{os})
     </insert>
 </mapper>

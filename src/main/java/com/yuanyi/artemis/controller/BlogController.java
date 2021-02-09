@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.yuanyi.artemis.annotation.EnableLog;
 import com.yuanyi.artemis.bean.Blog;
-import com.yuanyi.artemis.bean.User;
+import com.yuanyi.artemis.enums.LogType;
 import com.yuanyi.artemis.service.BlogService;
 import com.yuanyi.artemis.service.UserService;
 import com.yuanyi.artemis.util.LogUtil;
@@ -12,9 +12,6 @@ import com.yuanyi.artemis.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -95,7 +92,7 @@ public class BlogController {
      * @param json
      * @return
      */
-    @EnableLog(detail = "分页查询")
+    @EnableLog(message = "分页查询", operatingType = LogType.SELECT)
     @PostMapping(value = "/bloglist", produces = "application/json;charset=UTF-8")
     public String findBlogListByUserId(@RequestBody String json) {
         try {

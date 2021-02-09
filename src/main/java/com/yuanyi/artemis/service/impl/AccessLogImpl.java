@@ -31,12 +31,15 @@ public class AccessLogImpl implements AccessLogService {
      * @throws Exception
      */
     @Override
-    public void saveAccessLog(HttpServletRequest request) throws Exception {
+    public void saveAccessLog(HttpServletRequest request, String operatingtype, String message) throws Exception {
         String ip = logUtil.getIpAddress(request);
         String browserName = logUtil.getBrowserName(request);
         String osName = logUtil.getOsName(request);
         AccessLog log = new AccessLog();
         log.setIp(ip);
+        log.setUrl(request.getRequestURI());
+        log.setOperatingtype(operatingtype);
+        log.setMessage(message);
         log.setBrowsename(browserName);
         log.setTime(logUtil.getTime());
         log.setOs(osName);

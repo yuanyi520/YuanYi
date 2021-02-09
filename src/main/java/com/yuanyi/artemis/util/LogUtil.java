@@ -1,5 +1,6 @@
 package com.yuanyi.artemis.util;
 
+import eu.bitwalker.useragentutils.UserAgent;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +30,9 @@ public class LogUtil {
         String  browserDetails  =   request.getHeader("User-Agent");
         String  userAgent       =   browserDetails;
         String  user            =   userAgent.toLowerCase();
-
+//        UserAgent userAgent1 = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
+//        String os = userAgent1.getOperatingSystem().getName();
+//        String browsers = userAgent1.getBrowser().getName();
         String browser = "";
 
         if (user.contains("edg")) {

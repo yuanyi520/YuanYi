@@ -4,5 +4,5 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface AccessLogService {
 
-    void saveAccessLog(HttpServletRequest request) throws Exception;
+    void saveAccessLog(HttpServletRequest request, String operatingtype, String message) throws Exception;
 }

@@ -72,6 +72,14 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.74</version>
         </dependency>
+
+        <!--useragent工具-->
+        <dependency>
+            <groupId>eu.bitwalker</groupId>
+            <artifactId>UserAgentUtils</artifactId>
+            <version>1.21</version>
+        </dependency>
+
     </dependencies>
 
     <build>

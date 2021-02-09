@@ -1,5 +1,7 @@
 package com.yuanyi.artemis.annotation;
 
+import com.yuanyi.artemis.enums.LogType;
+
 import java.lang.annotation.*;
 
 @Documented
@@ -10,5 +12,10 @@ public @interface EnableLog {
     /**
      *方法描述
      */
-    String detail () default "";
+    String message() default "";
+
+    /**
+     * 操作类型
+     */
+    LogType operatingType() default LogType.UNKNOWN;
 }
